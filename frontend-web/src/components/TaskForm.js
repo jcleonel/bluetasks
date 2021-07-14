@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import TaskService from '../api/TaskService';
 
 class TaskForm extends Component {
     constructor(props) {
@@ -9,16 +11,28 @@ class TaskForm extends Component {
                 id: 0,
                 description: "",
                 whenToDo: ""
-            }
+            },
+            redirect: false,
+            buttonName: "Cadastrar"
         }
         
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
-        this.onSubmitHandler = this.onInputChangeHandler.bind(this);
+        this.onInputChangeHandler = this.onInputChangeHandler.bind(this);
     }
-    
+
+    componentDidMount() {
+        const editId = this.props.match.params.id;
+        
+        if (editId) {
+            const task = TaskService.load(~~editId);
+            this.setState({ task: task, buttonName: "Alterar" });
+        }
+    }
 
     onSubmitHandler(event) {
         event.preventDefault();
+        TaskService.save(this.state.task);
+        this.setState({redirect: true})
     }
 
     onInputChangeHandler(event) {
@@ -29,6 +43,10 @@ class TaskForm extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to="/" />
+        }
+
         return (
             <div>
                 <h1>Cadastro da Tarefa</h1>
@@ -38,6 +56,7 @@ class TaskForm extends Component {
                         <input type="text"
                             className="form-control"
                             name="description"
+                            value ={this.state.task.description}
                             placeholder="Digite a descrição"
                             onChange={this.onInputChangeHandler}
                         />
@@ -48,14 +67,21 @@ class TaskForm extends Component {
                         <input type="date"
                             className="form-control"
                             name="whenToDo"
+                            value={this.state.task.whenToDo}
                             placeholder="Digite a data"
                             onChange={this.onInputChangeHandler}
                         />
                     </div>
                     <br />
-                    <button type="submit" className="btn btn-primary">Cadastrar</button>
+                    <button type="submit" className="btn btn-primary">{this.state.buttonName}</button>
                     &nbsp;&nbsp;
-                    <button type="button" className="btn btn-primary">Cancelar</button>
+                    <button 
+                        type="button" 
+                        className="btn btn-primary"
+                        onClick={() => this.setState({ redirect: true })}
+                    >
+                        Cancelar
+                    </button>
                 </form>
             </div>
         );
