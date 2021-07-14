@@ -13,6 +13,10 @@ class TaskService {
         return this.tasks;
     }
 
+    delete(id) {
+        this.tasks = this.tasks.filter(task => task.id !== id);
+    }
+
 }
 
 export default new TaskService();

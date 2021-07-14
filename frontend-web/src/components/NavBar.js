@@ -35,7 +35,7 @@ class NavBar extends Component {
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
                     <div className="container-fluid">
-                        <span className="navbar-brand fw-bold mb-0 h1" href="#">{APP_NAME}</span>
+                        <span className="navbar-brand fw-bold mb-0 h1 fs-3" href="#">{APP_NAME}</span>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
