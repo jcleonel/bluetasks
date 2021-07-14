@@ -9,7 +9,7 @@ class NavBar extends Component {
         this.state = {
             items: [
                 { name: "Listar Tarefas", href: "/", active: true },
-                { name: "Nova Tarefa", href: "/", active: false }
+                { name: "Nova Tarefa", href: "/form", active: false }
             ]
         }
 
