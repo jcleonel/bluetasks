@@ -40,7 +40,7 @@ public class Task {
 	
 	@ManyToOne
 	@JoinColumn(name = "app_user_id")
-	@NotNull(message = "O usuário da tarefa é obrigatório")
+	//@NotNull(message = "O usuário da tarefa é obrigatório")
 	private AppUser appUser;
 
 	public Task(String description, LocalDate whenToDo, Boolean done) {

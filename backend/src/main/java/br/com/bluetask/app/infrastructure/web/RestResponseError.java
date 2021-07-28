@@ -24,5 +24,11 @@ public class RestResponseError {
 		resp.error = sb.toString();
 		return resp;
 	}
+	
+	public static RestResponseError fromMessage(String message) {
+		RestResponseError resp = new RestResponseError();
+		resp.error = message;
+		return resp;
+	}
 
 }
