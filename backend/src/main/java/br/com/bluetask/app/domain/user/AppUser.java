@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,16 +22,20 @@ public class AppUser {
 	@Id
 	@GeneratedValue
 	private Integer id;
-	private String username;
-	private String password;
-	private String displayName;
 	
+	@NotEmpty(message = "O nome de usuário é obrigatório")
+	private String username;
+	
+	@NotEmpty(message = "A senha é obrigatória")
+	private String password;
+	
+	@NotEmpty(message = "o nome de exibição é obrigatório")
+	private String displayName;
+		
 	public AppUser(String username, String password, String displayName) {
 		this.username = username;
 		this.password = password;
 		this.displayName = displayName;
 	}
-	
-	
 	
 }
