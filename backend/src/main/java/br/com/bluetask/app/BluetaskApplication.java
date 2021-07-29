@@ -17,15 +17,22 @@ import br.com.bluetask.app.domain.task.Task;
 @SpringBootApplication
 public class BluetaskApplication implements RepositoryRestConfigurer {
 
-	private static Logger logger = LoggerFactory.getLogger(BluetaskApplication.class);
+	private static final Logger logger = LoggerFactory.getLogger(BluetaskApplication.class);
 	
 	public static void main(String[] args) {
 		SpringApplication.run(BluetaskApplication.class, args);
+		logger.info("Aplicação iniciada!");
 	}
 	
 	@Override
 	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
 		config.exposeIdsFor(Task.class);
+		
+		cors.addMapping("/**")
+			.allowedOrigins("*")
+			.allowedMethods("GET", "POST", "PUT", "DELETE");
+		
+		logger.info("Configuração do CORS... OK!");
 	}
 	
 	@Bean
@@ -39,6 +46,8 @@ public class BluetaskApplication implements RepositoryRestConfigurer {
 		
 		validatingListener.addValidator("beforeCreate", validator);
 		validatingListener.addValidator("beforeSave", validator);
+		
+		logger.info("Configuração de validações... OK!");
 	}
 
 }
