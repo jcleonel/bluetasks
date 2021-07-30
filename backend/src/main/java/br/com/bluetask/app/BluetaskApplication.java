@@ -10,7 +10,6 @@ import org.springframework.data.rest.core.event.ValidatingRepositoryEventListene
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import br.com.bluetask.app.domain.task.Task;
 
@@ -23,17 +22,29 @@ public class BluetaskApplication implements RepositoryRestConfigurer {
 		SpringApplication.run(BluetaskApplication.class, args);
 		logger.info("Aplicação iniciada!");
 	}
-	
+		
 	@Override
-	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
+	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 		config.exposeIdsFor(Task.class);
 		
-		cors.addMapping("/**")
+		config.getCorsRegistry()
+			.addMapping("/**")
 			.allowedOrigins("*")
 			.allowedMethods("GET", "POST", "PUT", "DELETE");
 		
 		logger.info("Configuração do CORS... OK!");
 	}
+	
+//	@Override
+//	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
+//		config.exposeIdsFor(Task.class);
+//		
+//		cors.addMapping("/**")
+//			.allowedOrigins("*")
+//			.allowedMethods("GET", "POST", "PUT", "DELETE");
+//		
+//		logger.info("Configuração do CORS... OK!");
+//	}
 	
 	@Bean
 	public Validator validator() {
