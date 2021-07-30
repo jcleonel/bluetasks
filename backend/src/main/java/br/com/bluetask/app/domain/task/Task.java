@@ -3,6 +3,7 @@ package br.com.bluetask.app.domain.task;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -19,6 +20,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@EntityListeners(TaskListener.class)
 @NoArgsConstructor
 @Getter
 @Setter
