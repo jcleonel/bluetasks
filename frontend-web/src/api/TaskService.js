@@ -19,21 +19,28 @@ class TaskService {
             .catch(e => onError(e));
     }
 
-    load(id){
-       return this.tasks.filter(t => t.id === id)[0];
+    load(id, onLoad, onError) {
+        axios.get(`${API_ENDPOINT}/tasks/${id}`, this.buildAuthHeader())
+            .then(response => onLoad(response.data))
+            .catch(e => onError(e));
     }
 
-    delete(id) {
-        this.tasks = this.tasks.filter(task => task.id !== id);
+    delete(id, onDelete, onError) {
+        axios.delete(`${API_ENDPOINT}/tasks/${id}`, this.buildAuthHeader())
+            .then(() => onDelete())
+            .catch(e => onError(e));
     }
 
-    save(task) {
-        if (task.id !== 0 ) {            
-            this.tasks = this.tasks.map(t => task.id !== t.id ? t : task);
+    save(task, onSave, onError) {
+        if (task.id === 0) {
+            axios.post(`${API_ENDPOINT}/tasks`, task, this.buildAuthHeader())
+                .then(() => onSave())
+                .catch(e => onError(e));
+        
         } else {
-            const taskId = Math.max(...this.tasks.map(t => t.id)) + 1;
-            task.id = taskId;
-            this.tasks.push(task);
+            axios.put(`${API_ENDPOINT}/tasks/${task.id}`, task, this.buildAuthHeader())
+                .then(() => onSave())
+                .catch(e => onError(e));
         }
     }
 

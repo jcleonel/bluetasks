@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom';
 import AuthService from '../api/AuthService';
 import Alert from './Alert';
 import Spinner from './Spinner';
+import Moment from 'react-moment';
 
 class TaskListTable extends Component {
     constructor(props) {
@@ -43,11 +44,14 @@ class TaskListTable extends Component {
         this.setState({ alert: `Erro na requisição: ${error.message}`, loading: false })
     }
 
-    onDeleteHandler(id){
-        if (window.confirm("Deseja mesmo excluir essa tarefa?")) {
-            TaskService.delete(id);
-            this.listTasks(); 
-            toast.success("Tarefa excluída!");
+    onDeleteHandler(id) {
+        if (window.confirm("Deseja mesmo excluir esta tarefa?")) {
+            TaskService.delete(id, 
+                () => {
+                    this.listTasks();
+                    toast.success("Tarefa excluída!", { position: toast.POSITION.BOTTOM_LEFT });
+                },
+                error => this.setErrorState(error));
         }
     }
 
@@ -122,7 +126,11 @@ const TableBody = (props) => {
                         />
                     </td>
                     <td>{task.done ? <s>{task.description}</s> : task.description}</td>
-                    <td>{task.done ? <s>{task.whenToDo}</s> : task.whenToDo}</td>
+                    <td>{ task.done ? 
+                        <s><Moment format="DD/MM/YYYY">{task.whenToDo}</Moment></s>
+                        : <Moment format="DD/MM/YYYY">{task.whenToDo}</Moment>
+                        }
+                    </td>
                     <td>
                         <input 
                             type="button" 
