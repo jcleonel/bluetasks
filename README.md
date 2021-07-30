@@ -14,7 +14,9 @@ https://bluetasks-jcl.netlify.app/
 ## Back end
 - Java
 - Spring Boot
+- Spring Security
 - JPA / Hibernate
+- JWT
 - Gradle
 - Lombok
 
@@ -23,6 +25,7 @@ https://bluetasks-jcl.netlify.app/
 - ReactJS
 - Bootstrap
 - Toast
+- Axios
 
 # Autor
 

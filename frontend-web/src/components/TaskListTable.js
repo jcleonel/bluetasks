@@ -3,6 +3,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import TaskService from '../api/TaskService';
 import 'react-toastify/dist/ReactToastify.css';
 import { Redirect } from 'react-router-dom';
+import Alert from '../components/Alert';
+import AuthService from '../api/AuthService';
 
 class TaskListTable extends Component {
     constructor(props) {
@@ -46,11 +48,16 @@ class TaskListTable extends Component {
     }
 
     render() {
+        if (!AuthService.isAuthenticated()){
+            return <Redirect to="/login" />
+        }
+
         if (this.state.editId > 0 ) {
             return <Redirect to={`/form/${this.state.editId}`} />
         }
         return (
             <>
+                <Alert message="Esse é um alerta de teste" />
                 <table className="table table-striped text-center">
                 <TableHeader />
                 
