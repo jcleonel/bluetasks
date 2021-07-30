@@ -14,6 +14,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.bluetask.app.domain.user.AppUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,6 +45,7 @@ public class Task {
 	@ManyToOne
 	@JoinColumn(name = "app_user_id")
 	//@NotNull(message = "O usuário da tarefa é obrigatório")
+	@JsonIgnore
 	private AppUser appUser;
 
 	public Task(String description, LocalDate whenToDo, Boolean done) {
