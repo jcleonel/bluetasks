@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AuthService from '../api/AuthService';
 import { APP_NAME } from '../constants';
 import NavBarItem from './NavBarItem';
 
@@ -14,6 +15,7 @@ class NavBar extends Component {
         }
 
         this.onClickHandler = this.onClickHandler.bind(this);
+        this.onLogoutHandler = this.onLogoutHandler.bind(this);
     }
 
     onClickHandler(itemClicked){
@@ -30,29 +32,40 @@ class NavBar extends Component {
         this.setState({ items });
     }
 
+    onLogoutHandler() {
+        AuthService.logout();
+        this.props.onLinkClick();
+    }
+
     render() {
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <div className="container-fluid">
-                        <span className="navbar-brand fw-bold mb-0 h1 fs-3" href="#">{APP_NAME}</span>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                            <div className="navbar-nav">
-                                {this.state.items.map(
-                                    (i) => <NavBarItem 
-                                        key={i.name}
-                                        item={i} 
-                                        onClick={this.onClickHandler}
-                                    />)
-                                } 
-                            </div>
+                    <span className="navbar-brand mb-0 h1">{APP_NAME}</span>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarText">
+                        <div className="navbar-nav mr-auto">
+                            {this.state.items.map(
+                                i => <NavBarItem
+                                    key={i.name}
+                                    item={i}
+                                    onClick={this.onClickHandler} />)}
+                            { AuthService.isAuthenticated() ?
+                                <NavBarItem className="justify-content-end" 
+                                    item={ { name: "Logout", active: false, href: "#" } }
+                                    onClick={this.onLogoutHandler} />
+                                : ""
+                            }
                         </div>
+                        <span className="navbar-text">
+                            { AuthService.isAuthenticated() ?
+                                `Olá, ${AuthService.getJWTTokenData().displayName}!` : "" }
+                        </span>
                     </div>
                 </nav>
-            </div>                            
+            </div>
         );
     }
 }

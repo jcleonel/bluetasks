@@ -18,7 +18,8 @@ class TaskForm extends Component {
             redirect: false,
             buttonName: "Cadastrar",
             alert: null,
-            loading: false
+            loading: false,
+            saving: false
         }
         
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
@@ -110,7 +111,18 @@ class TaskForm extends Component {
                         />
                     </div>
                     <br />
-                    <button type="submit" className="btn btn-primary">{this.state.buttonName}</button>
+                    <button
+                        type="submit"
+                        className="btn btn-primary"
+                        disabled={this.state.saving}>
+                            {
+                                this.state.saving ?
+                                    <span className="spinner-border spinner-border-sm"
+                                        role="status" aria-hidden="true">
+                                    </span>
+                                : this.state.buttonName 
+                            }
+                    </button>
                     &nbsp;&nbsp;
                     <button 
                         type="button" 

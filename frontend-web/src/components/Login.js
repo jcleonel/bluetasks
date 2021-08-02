@@ -26,7 +26,7 @@ class Login extends Component {
             success => {
                 if (success) {
                     this.setState({ loggedIn: true, processing: false });
-                    this.props.onLoginSuccess();
+                    this.props.onLoginSuccess(); 
                 } else {
                     this.setState({ alert: "O login não pode ser realizado.", processing: false });
                 }
