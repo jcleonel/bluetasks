@@ -1,16 +1,21 @@
-package br.com.bluetask.app.infrastructure.web;
+package br.com.bluetask.app.resources.exceptions;
+
+import java.io.Serializable;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 
 import lombok.Getter;
+import lombok.Setter;
 
-public class RestResponseError {
+public class RestResponseError implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	@Getter
+	@Setter
 	private String error;
 	
-	private RestResponseError() {
+	public RestResponseError() {
 	}
 	
 	public static RestResponseError fromValidationError(Errors errors) {
@@ -30,5 +35,4 @@ public class RestResponseError {
 		resp.error = message;
 		return resp;
 	}
-
 }

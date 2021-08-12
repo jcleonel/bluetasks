@@ -1,10 +1,11 @@
-package br.com.bluetask.app.domain.task;
+package br.com.bluetask.app.entities;
 
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,7 +17,7 @@ import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.com.bluetask.app.domain.user.AppUser;
+import br.com.bluetask.app.services.utils.TaskListener;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,7 +30,7 @@ import lombok.Setter;
 public class Task {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@NotEmpty(message = "A descrição da tarefa é obrigatória")

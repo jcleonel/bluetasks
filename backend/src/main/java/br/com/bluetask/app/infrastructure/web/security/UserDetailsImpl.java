@@ -6,7 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import br.com.bluetask.app.domain.user.AppUser;
+import br.com.bluetask.app.entities.AppUser;
 
 public class UserDetailsImpl implements UserDetails {
 	private static final long serialVersionUID = 1L;

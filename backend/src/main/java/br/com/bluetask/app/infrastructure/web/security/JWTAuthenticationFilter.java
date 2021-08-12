@@ -16,7 +16,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.bluetask.app.domain.user.AppUser;
+import br.com.bluetask.app.config.constants.SecurityConstants;
+import br.com.bluetask.app.entities.AppUser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 

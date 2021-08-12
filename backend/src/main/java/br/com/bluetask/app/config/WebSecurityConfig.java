@@ -1,4 +1,4 @@
-package br.com.bluetask.app.infrastructure.web.security;
+package br.com.bluetask.app.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +8,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import br.com.bluetask.app.config.constants.SecurityConstants;
+import br.com.bluetask.app.infrastructure.web.security.JWTAuthenticationFilter;
+import br.com.bluetask.app.infrastructure.web.security.JWTAuthorizationFilter;
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {

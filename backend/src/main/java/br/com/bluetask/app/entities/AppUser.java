@@ -1,7 +1,8 @@
-package br.com.bluetask.app.domain.user;
+package br.com.bluetask.app.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -20,7 +21,7 @@ import lombok.Setter;
 public class AppUser {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@NotEmpty(message = "O nome de usuário é obrigatório")

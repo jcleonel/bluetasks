@@ -9,10 +9,10 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import br.com.bluetask.app.domain.task.Task;
-import br.com.bluetask.app.domain.task.TaskRepository;
-import br.com.bluetask.app.domain.user.AppUser;
-import br.com.bluetask.app.domain.user.AppUserRepository;
+import br.com.bluetask.app.entities.AppUser;
+import br.com.bluetask.app.entities.Task;
+import br.com.bluetask.app.repository.AppUserRepository;
+import br.com.bluetask.app.repository.TaskRepository;
 
 @Component
 public class InsertTestData {

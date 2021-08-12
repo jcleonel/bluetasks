@@ -5,7 +5,7 @@ import { API_ENDPOINT } from '../constants';
 class TaskService {
    
     list(onFetch, onError) {
-        axios.get(`${API_ENDPOINT}/tasks?sort=whenToDo,asc`, this.buildAuthHeader())
+        axios.get(`${API_ENDPOINT}/tasks`, this.buildAuthHeader())
             .then(response => onFetch(response.data.content))
             .catch(e => onError(e));
     }

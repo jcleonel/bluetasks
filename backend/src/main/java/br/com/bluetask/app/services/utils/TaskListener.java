@@ -1,4 +1,4 @@
-package br.com.bluetask.app.domain.task;
+package br.com.bluetask.app.services.utils;
 
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PrePersist;
@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import br.com.bluetask.app.domain.user.AppUser;
-import br.com.bluetask.app.domain.user.AppUserRepository;
+import br.com.bluetask.app.entities.AppUser;
+import br.com.bluetask.app.entities.Task;
+import br.com.bluetask.app.repository.AppUserRepository;
 
 @Component
 public class TaskListener {

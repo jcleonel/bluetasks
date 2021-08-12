@@ -11,7 +11,7 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-import br.com.bluetask.app.domain.task.Task;
+import br.com.bluetask.app.entities.Task;
 
 @SpringBootApplication
 public class BluetaskApplication implements RepositoryRestConfigurer {
@@ -30,7 +30,7 @@ public class BluetaskApplication implements RepositoryRestConfigurer {
 		config.getCorsRegistry()
 			.addMapping("/**")
 			.allowedOrigins("*")
-			.allowedMethods("GET", "POST", "PUT", "DELETE");
+			.allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS");
 		
 		logger.info("Configuração do CORS... OK!");
 	}

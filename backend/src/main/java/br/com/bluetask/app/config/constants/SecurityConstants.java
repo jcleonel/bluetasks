@@ -1,4 +1,4 @@
-package br.com.bluetask.app.infrastructure.web.security;
+package br.com.bluetask.app.config.constants;
 
 public class SecurityConstants {
 
