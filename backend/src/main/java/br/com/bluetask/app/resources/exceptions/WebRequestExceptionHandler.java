@@ -30,12 +30,4 @@ public class WebRequestExceptionHandler {
 		return RestResponseError.fromMessage(e.getMessage());
 	}
 	
-//	@ExceptionHandler(ResourceNotFoundException.class)
-//	public ResponseEntity<RestResponseError> entityNotFound(ResourceNotFoundException e, HttpServletRequest request) {
-//		HttpStatus status = HttpStatus.NOT_FOUND;
-//		RestResponseError error = new RestResponseError();		
-//		error.setError(e.getMessage());		
-//		return ResponseEntity.status(status).body(error);
-//	}
-	
 }

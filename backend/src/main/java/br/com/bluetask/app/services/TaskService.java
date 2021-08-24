@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,41 +28,40 @@ public class TaskService {
 
 	@Transactional(readOnly = true)
 	public TaskDTO findById(Integer id) {
-		Optional<Task> obj = taskRepository.findById(id);
-		Task entity = obj.orElseThrow(() -> new ResourceNotFoundException("Task não encontrada!"));
+		Optional<Task> taskDB = taskRepository.findById(id);
+		Task entity = taskDB.orElseThrow(() -> new ResourceNotFoundException("Task não encontrada!"));
 		return new TaskDTO(entity);
 	}
 
 	@Transactional
-	public TaskDTO update(Integer id, TaskDTO dto) {
+	public TaskDTO update(Integer id, TaskDTO taskDTO) {
 
-		try {
-			Task entity = taskRepository.getOne(id);
-			entity.setDescription(dto.getDescription());
-			entity.setWhenToDo(dto.getWhenToDo());
-			entity.setDone(dto.getDone());
-			entity = taskRepository.save(entity);
+		Optional<Task> taskDB = taskRepository.findById(id);
+		Task task = taskDB.orElseThrow(() -> new ResourceNotFoundException("Task não encontrada!"));
+					
+		task.setDescription(taskDTO.getDescription());
+		task.setWhenToDo(taskDTO.getWhenToDo());
+		task.setDone(taskDTO.getDone());
+		
+		task = taskRepository.save(task);
 
-			return new TaskDTO(entity);
-		} catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("Id " + id + " não encontrado!");
-		}
+		return new TaskDTO(task);
+
 	}
 
 	@Transactional
-	public TaskDTO updateChangeds(Integer id, TaskDTO dto) {
+	public TaskDTO updateChangeds(Integer id, TaskDTO taskDTO) {
 
-		try {
-			Task entity = taskRepository.getOne(id);
-			entity.setDescription(dto.getDescription() != null ? dto.getDescription() : entity.getDescription());
-			entity.setWhenToDo(dto.getWhenToDo() != null ? dto.getWhenToDo() : entity.getWhenToDo());
-			entity.setDone(dto.getDone() != null ? dto.getDone() : entity.getDone());
-			entity = taskRepository.save(entity);
+		Optional<Task> taskDB = taskRepository.findById(id);
+		Task task = taskDB.orElseThrow(() -> new ResourceNotFoundException("Task não encontrada!"));
+		
+		task.setDescription(taskDTO.getDescription() != null ? taskDTO.getDescription() : task.getDescription());
+		task.setWhenToDo(taskDTO.getWhenToDo() != null ? taskDTO.getWhenToDo() : task.getWhenToDo());
+		task.setDone(taskDTO.getDone() != null ? taskDTO.getDone() : task.getDone());
+		
+		task = taskRepository.save(task);	
 
-			return new TaskDTO(entity);
-		} catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("Id " + id + " não encontrado!");
-		}
+		return new TaskDTO(task);
 	}
 
 	@Transactional
@@ -95,6 +92,15 @@ public class TaskService {
 		entity = taskRepository.save(entity);
 
 		return new TaskDTO(entity);
+	}
+	
+	@Transactional
+	public void delete(Integer id) {
+		
+		Optional<Task> taskDB = taskRepository.findById(id);
+		taskDB.orElseThrow(() -> new ResourceNotFoundException("Task não encontrada!"));		
+		
+		taskRepository.deleteById(id);
 	}
 
 }

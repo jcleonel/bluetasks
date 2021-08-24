@@ -10,8 +10,8 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import br.com.bluetask.app.config.constants.SecurityConstants;
-import br.com.bluetask.app.infrastructure.web.security.JWTAuthenticationFilter;
-import br.com.bluetask.app.infrastructure.web.security.JWTAuthorizationFilter;
+import br.com.bluetask.app.security.JWTAuthenticationFilter;
+import br.com.bluetask.app.security.JWTAuthorizationFilter;
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {

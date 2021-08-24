@@ -1,4 +1,4 @@
-package br.com.bluetask.app.infrastructure.web.security;
+package br.com.bluetask.app.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
