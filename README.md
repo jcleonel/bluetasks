@@ -30,13 +30,13 @@ O Blustasks é um gerenciador bem simples de tarefas pessoais a serem realizadas
 
 ### Algumas imagens do sistema
 
-![](D:\Projetos\bluetasks\bluetasks\assets\imgs\telaLogin.png) 
+![](https://github.com/jcleonel/bluetasks/blob/master/assets/imgs/telaLogin.png) 
 
-![](D:\Projetos\bluetasks\bluetasks\assets\imgs\listaDeTasks.png) 
+![](https://github.com/jcleonel/bluetasks/blob/master/assets/imgs/listaDeTasks.png) 
 
 #### Responsivo
 
-![](D:\Projetos\bluetasks\bluetasks\assets\imgs\telaLogin-responsivo.png)  ![](D:\Projetos\bluetasks\bluetasks\assets\imgs\listaDeTasks-responsivo.png) 
+![](https://github.com/jcleonel/bluetasks/blob/master/assets/imgs/telaLogin-responsivo.png)      ![](https://github.com/jcleonel/bluetasks/blob/master/assets/imgs/listaDeTasks-responsivo.png) 
 
 
 
