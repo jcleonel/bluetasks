@@ -63,7 +63,7 @@ const TaskListTable = () => {
             <h1>Lista de Tarefas</h1>
             {tasks.error && <Alert message={tasks.error} />}
             {tasks.processing ? <Spinner /> :
-                <table className="table table-striped">
+                <table className="table table-striped text-center">
                     <thead className="thead-dark">
                         <tr>
                             <th scope="col">Status</th>

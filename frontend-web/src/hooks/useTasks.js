@@ -27,7 +27,6 @@ export const useTasks = () => {
             setProcessing(false); 
         } catch (error) {
             handleError(error);
-            console.log("Lista de tasks UseTasks: " + taskList );
         }
     }
 
