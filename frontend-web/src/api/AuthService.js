@@ -8,6 +8,7 @@ class AuthService {
         axios
             .post(`${AUTH_ENDPOINT}/login`, { username: username, password: password })
             .then(response => {
+                console.log(response);
                 const jwtToken = response.headers['authorization'].replace("Bearer ", "");
                 sessionStorage.setItem(JWT_TOKEN_NAME, jwtToken);
                 onLogin(true);

@@ -6,7 +6,7 @@ class TaskService {
    
     list(onFetch, onError) {
         axios.get(`${API_ENDPOINT}/tasks`, this.buildAuthHeader())
-            .then(response => onFetch(response.data.content))
+            .then(response => onFetch(response.data))
             .catch(e => onError(e));
     }
 
