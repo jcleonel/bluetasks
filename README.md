@@ -13,6 +13,7 @@ A principio o projeto não era RESTful, mas tomei a liberdade de adaptar de acor
 O Blustasks é um gerenciador bem simples de tarefas pessoais a serem realizadas.
 
 **PS:** O projeto ainda não foi finalizado, mas já pode ser testada algumas funcionalidades.
+**PS 2:** O projeto não será finalizado. Ele foi descontinuado. Logo terá uma nova versão.
 
 ## Link para o projeto web
 
